@@ -8,7 +8,6 @@ export function loginSuccess() {
 }
 
 export function logoutUser(){
-    console.log("LOgout")
 	sessionStorage.removeItem('jwt');
 	sessionStorage.removeItem('user');
 	return {type: types.LOG_OUT}
@@ -16,7 +15,7 @@ export function logoutUser(){
 
 export function loginUser(credentials) {  
   return function(dispatch) {
-    //CONECT WITH API 
+    //CONECT WITH API | send request with credentials | handle errors
       sessionStorage.setItem('jwt', tokentest);
       sessionStorage.setItem('user',JSON.stringify({usertest}));
   };

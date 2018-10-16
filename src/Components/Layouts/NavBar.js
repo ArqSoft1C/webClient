@@ -34,7 +34,7 @@ class NavBar extends Component {
     else{
       return( 
         <div>
-          <Button waves='light'>Sign In</Button>
+          <Button waves='light'><Link to='/login'>Sign In</Link></Button>
           <Button waves='light'>Sign out</Button>
         </div>
       )
@@ -52,6 +52,7 @@ class NavBar extends Component {
         <NavItem href=''><Icon>more_vert</Icon></NavItem>
          <NavItem href=''><this.userBar logged={this.props.logged_in}/></NavItem>
       </Navbar>
+      
     )
   }
 }
