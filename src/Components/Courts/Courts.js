@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import {Row, Col, Button, Card, CardTitle} from 'react-materialize'
 
-export default class Teams extends Component {
+export default class Courts extends Component {
  render() {
     return (
     <div>
@@ -11,7 +11,7 @@ export default class Teams extends Component {
           <Col l={3} className='grid-example'></Col>
           <Col l={6} className='grid-example'>
             <Card className=''>
-                <h4><b>Equipos</b></h4>
+                <h4><b>Canchas</b></h4>
   				Regístrate como jugador para obtener la calificación de otros usuarios, comparte tu disponibilidad de tiempo para jugar y tus estadísticas.<br/>
 				Crea equipos, añade miembros y busca jugadores!<br/>
 				Consulta canchas disponibles para jugar!

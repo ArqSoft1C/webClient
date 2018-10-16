@@ -44,15 +44,14 @@ class NavBar extends Component {
     return(
       <Navbar brand={logo} right> 
         <NavItem ><Link to='/equipos'>Equipos</Link></NavItem>
-        <NavItem >Partidos</NavItem>
-        <NavItem >Canchas</NavItem>
+        <NavItem ><Link to='/partidos'>Partidos</Link></NavItem>
+        <NavItem ><Link to='/canchas'>Canchas</Link></NavItem>
         <NavItem href=''><Icon>search</Icon></NavItem>
         <NavItem href=''><Icon>view_module</Icon></NavItem>
         <NavItem href=''><Icon>refresh</Icon></NavItem>
         <NavItem href=''><Icon>more_vert</Icon></NavItem>
-         <NavItem href=''><this.userBar logged={this.props.logged_in}/></NavItem>
+        <NavItem href=''><this.userBar logged={this.props.logged_in}/></NavItem>
       </Navbar>
-      
     )
   }
 }
