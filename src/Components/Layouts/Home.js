@@ -7,7 +7,8 @@ export default props =>
           <Col l={3} className='grid-example'></Col>
           <Col l={6} className='grid-example'>
             <Card className='center-align'
-              actions={[<a href='#'>Ingresa</a>]}>
+              actions={[<div><a href='#'>Ingresa</a>
+                        <a href='#'>Registrate</a></div>]}>
                 <img className="responsive-img" src={require('../../Images/fireball.png')} />
                 <h2><b>PICADITOS</b></h2>
   				Regístrate como jugador para obtener la calificación de otros usuarios, comparte tu disponibilidad de tiempo para jugar y tus estadísticas.<br/>
