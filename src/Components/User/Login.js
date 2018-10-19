@@ -25,7 +25,7 @@ class Login extends Component {
   handleSubmit = event => {
     event.preventDefault();
     this.props.actions.loginUser(this.state);
-    window.location.reload();
+    //window.location.reload();
   }
 
   render() {
@@ -38,8 +38,22 @@ class Login extends Component {
           <Card className='center-align'
             actions={[<Button onClick={this.handleSubmit}>Sign in</Button>]}>
             <Row>
-                <Input type="email" label="Email" id="email" s={12} />
-                <Input type="password" label="password" id="password" s={12} />
+                <input placeholder="Enter Email"
+                  id="email"
+                  type='email'
+                  onChange={this.handleChange}
+                  value={this.state.email}
+                  className="form-control"
+                  required/>
+
+                <label htmlFor="psw">Contraseña</label>
+                <input placeholder="Enter password"
+                    id="password"
+                    type='password'
+                    onChange={this.handleChange}
+                    value={this.state.password}
+                    className="form-control"
+                    required/>
             </Row>
           </Card>
         </Col>

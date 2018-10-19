@@ -35,7 +35,6 @@ class NavBar extends Component {
       return( 
         <div>
           <Button waves='light'><Link to='/login'>Sign In</Link></Button>
-          <Button waves='light'>Sign out</Button>
         </div>
       )
     }

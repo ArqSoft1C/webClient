@@ -9,8 +9,7 @@ export default props =>
         <Card className='center-align'
             actions={[
               <div>
-                <a href='#'>Ingresa</a>
-                <a href='#'>Registrate</a>
+                <a href='/login'>Ingresa</a>
               </div>]}
         >
           <img className="responsive-img" src={require('../../Images/fireball.png')}  width="180"/>
