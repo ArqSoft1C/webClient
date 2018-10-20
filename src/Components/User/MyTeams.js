@@ -11,7 +11,7 @@ export default class MyTeams extends Component {
         teams: [],
     }
     componentDidMount(){
-        const LOGIN = gql`
+        const TEAMS = gql`
         query TeamByPlayer($player_name:String!){
             teamByPlayer(player_name:$player_name){
                 name
@@ -21,7 +21,7 @@ export default class MyTeams extends Component {
         `
         axios
         .post(consts.GRAPHQL_URL, {
-            query: print(LOGIN),
+            query: print(TEAMS),
             variables: {
                 player_name: JSON.parse(sessionStorage.user).username
             },

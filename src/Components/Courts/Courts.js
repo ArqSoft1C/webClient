@@ -1,6 +1,14 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import {Row, Col, Button, Card, CardTitle} from 'react-materialize'
+import MapContainer from './MapContainer'
+
+const cardStyle = {
+  display: 'block',
+  width: '50vw',
+  transitionDuration: '0.3s',
+  height: '40vw'
+}
 
 export default class Courts extends Component {
  render() {
@@ -9,12 +17,11 @@ export default class Courts extends Component {
         <Row>
           <Col l={3} className='grid-example'></Col>
           <Col l={6} className='grid-example'>
-            <Card className=''>
+            <Card style={cardStyle}>
               <h4><b>Canchas</b></h4>
-  				    Regístrate como jugador para obtener la calificación de otros usuarios, comparte tu disponibilidad de tiempo para jugar y tus estadísticas.<br/>
-				      Crea equipos, añade miembros y busca jugadores!<br/>
-				      Consulta canchas disponibles para jugar!
+  				    <MapContainer />
             </Card>
+            
           </Col>
         </Row>
         <div style={{'margin-bottom':'200px'}}>
