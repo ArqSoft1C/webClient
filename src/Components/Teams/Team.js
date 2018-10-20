@@ -15,11 +15,12 @@ export default class Team extends Component {
 
   componentDidMount() {
     axios.post('http://192.168.99.102:5000/graphql?',{
-      query:"query{\nteamById(id:\""+this.props.match.params.id+"\"){\nname\ncapitan_un\nmiembros\n}\n\n}","variables":null
+      query:"query{\nteamById(id:\""+this.props.match.params.id+"\"){\nname\ncaptain\nsquad\n}\n\n}","variables":null
     })
       .then(response => {
+        console.log(response.data.data)
         var team = response.data.data.teamById
-        var members = response.data.data.teamById.miembros
+        var members = response.data.data.teamById.squad
         this.setState({team});
         this.setState({members});
       })
@@ -47,10 +48,10 @@ export default class Team extends Component {
   	return (
       <div>
       <Card className=''
-        header={<CardTitle image='../../Images/banner.jpg'>Card Title</CardTitle>}>
+        header={<CardTitle image='../../Images/banner.jpg'></CardTitle>}>
         <h4>{this.state.team.name}</h4>
-        <this.renderUsers miembros={this.state.team.miembros} />
-        {console.log("memb",this.state.team.miembros)}
+        <this.renderUsers miembros={this.state.team.squad} />
+        {console.log("memb",this.state.team.squad)}
       </Card>
   	  </div>
     )

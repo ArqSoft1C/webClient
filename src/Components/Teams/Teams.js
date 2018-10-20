@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Create from './Create';
 import {Row, Col, Button, Card, CardTitle} from 'react-materialize';
 
 export default class Teams extends Component {
@@ -10,7 +11,7 @@ export default class Teams extends Component {
 //temp  
   componentDidMount() {
     axios.post('http://192.168.99.102:5000/graphql?', {
-        query:"query{\nallTeams{\nid\nname\ncapitan_un\nsport\n}\n}",variables:null
+        query:"query{\nallTeams{\nid\nname\ncaptain\nsport\n}\n}",variables:null
     })
       .then(response => {
         const teams = response.data.data.allTeams
@@ -43,13 +44,12 @@ export default class Teams extends Component {
               </div>
              )}
             </Row>
+            <Create />
           </Card>
         </Col>
       </Row>
       <div style={{'margin-bottom':'200px'}}>
-          <Button floating fab='vertical' faicon='fa fa-plus' className='red' 
-                  icon='add' large style={{bottom: '45px', right: '24px'}}>
-          </Button>
+          
       </div>
     </div>
     )

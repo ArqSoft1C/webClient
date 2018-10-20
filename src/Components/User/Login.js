@@ -17,6 +17,8 @@ class Login extends Component {
   }
     
   handleChange = event => {
+    
+    console.log(event.target)
     this.setState({
       [event.target.id]: event.target.value
     });
@@ -38,8 +40,8 @@ class Login extends Component {
           <Card className='center-align'
             actions={[<Button onClick={this.handleSubmit}>Sign in</Button>]}>
             <Row>
-                <Input type="email" label="Email" id="email" s={12} />
-                <Input type="password" label="password" id="password" s={12} />
+                <Input type="email" label="Email" id="email" s={12} onChange={this.handleChange}/>
+                <Input type="password" label="password" id="password" s={12} onChange={this.handleChange}/>
             </Row>
           </Card>
         </Col>
