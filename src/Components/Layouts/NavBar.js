@@ -27,14 +27,15 @@ class NavBar extends Component {
     if(logged.logged){
       return (
         <div >
-          <Button waves='light' onClick={this.logout} >Log out</Button>
+          <Button waves='light'><Link to='/perfil'>Perfil</Link></Button>
+          <Button waves='light' onClick={this.logout} >Cerrar Sesión</Button>
         </div>
       )
     }
     else{
       return( 
         <div>
-          <Button waves='light'><Link to='/login'>Sign In</Link></Button>
+          <Button waves='light'><Link to='/login'>Ingresar</Link></Button>
         </div>
       )
     }

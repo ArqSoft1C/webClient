@@ -5,6 +5,7 @@ import Login from '../User/Login';
 import Teams from '../Teams/Teams';
 import Matches from '../Matches/Matches';
 import Courts from '../Courts/Courts';
+import Profile from '../User/Profile'
 
 const Main = () => (
   <Switch>
@@ -14,6 +15,7 @@ const Main = () => (
     <Route exact path='/equipos' component={Teams}/>
     <Route exact path='/partidos' component={Matches}/>
     <Route exact path='/canchas' component={Courts}/>
+    <Route exact path='/perfil' component={Profile}/>
   </Switch>
 )
 
