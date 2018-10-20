@@ -4,6 +4,7 @@ import axios from 'axios';
 import * as consts from '../../consts';
 import { print } from 'graphql';
 import gql from 'graphql-tag';
+import { Link } from 'react-router-dom'
 
 export default class MyTeams extends Component {
     state = {
@@ -38,8 +39,10 @@ export default class MyTeams extends Component {
                     <Row>
                     { this.state.teams.map(team =>
                         <Col>
+                        <Link to={`/equipo/${team.id}`}>
                             <img src={require('../../Images/team.jpg')} className="img-responsive profile-img"/>
                             <h4>{team.name}</h4>
+                        </Link>
                         </Col>
                         )}
                     </Row>
