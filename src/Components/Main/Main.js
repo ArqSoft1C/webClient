@@ -7,12 +7,15 @@ import Matches from '../Matches/Matches';
 import Courts from '../Courts/Courts';
 import Profile from '../User/Profile'
 import Messages from '../Messages/Messages'
+import Team from '../Teams/Team';
+
 const Main = () => (
   <Switch>
     <Route exact path='/' render={()=>( (<Home />) )}/>
     <Route exact path='/login' render={()=>(
       !!sessionStorage.jwt ? (<Redirect to='/equipos' />) : (<Login />))}/>
     <Route exact path='/equipos' component={Teams}/>
+    <Route exact path='/equipo/:id' component={Team}/>
     <Route exact path='/partidos' component={Matches}/>
     <Route exact path='/canchas' component={Courts}/>
     <Route exact path='/mensajes' component={Messages}/>

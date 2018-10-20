@@ -11,9 +11,9 @@ export default class MyTeams extends Component {
     }
     componentDidMount(){
         const LOGIN = gql`
-        query equipoByPlayer($player_name:String!){
-            equipoByPlayer(player_name:$player_name){
-                nombre
+        query TeamByPlayer($player_name:String!){
+            teamByPlayer(player_name:$player_name){
+                name
                 id
           }  
         }
@@ -26,7 +26,7 @@ export default class MyTeams extends Component {
             },
         })
         .then(res => {
-            this.setState({ teams:res.data.data.equipoByPlayer });
+            this.setState({ teams:res.data.data.teamByPlayer });
         })
         .catch(err => {throw(err);})
     }
@@ -39,7 +39,7 @@ export default class MyTeams extends Component {
                     { this.state.teams.map(team =>
                         <Col>
                             <img src={require('../../Images/team.jpg')} className="img-responsive profile-img"/>
-                            <h4>{team.nombre}</h4>
+                            <h4>{team.name}</h4>
                         </Col>
                         )}
                     </Row>
