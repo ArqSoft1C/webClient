@@ -46,6 +46,7 @@ class NavBar extends Component {
         <NavItem ><Link to='/equipos'>Equipos</Link></NavItem>
         <NavItem ><Link to='/partidos'>Partidos</Link></NavItem>
         <NavItem ><Link to='/canchas'>Canchas</Link></NavItem>
+        <NavItem ><Link to='/Mensajes'>Mensajes</Link></NavItem>
         <NavItem href=''><Icon>search</Icon></NavItem>
         <NavItem href=''><Icon>view_module</Icon></NavItem>
         <NavItem href=''><Icon>refresh</Icon></NavItem>

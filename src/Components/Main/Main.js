@@ -6,7 +6,7 @@ import Teams from '../Teams/Teams';
 import Matches from '../Matches/Matches';
 import Courts from '../Courts/Courts';
 import Profile from '../User/Profile'
-
+import Messages from '../Messages/Messages'
 const Main = () => (
   <Switch>
     <Route exact path='/' render={()=>( (<Home />) )}/>
@@ -15,6 +15,8 @@ const Main = () => (
     <Route exact path='/equipos' component={Teams}/>
     <Route exact path='/partidos' component={Matches}/>
     <Route exact path='/canchas' component={Courts}/>
+    <Route exact path='/mensajes' component={Messages}/>
+    
     <Route exact path='/perfil' component={Profile}/>
   </Switch>
 )
