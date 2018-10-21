@@ -26,7 +26,7 @@ export default class Create extends Component {
   
   postTeam() {
     axios.post(consts.GRAPHQL_URL, {
-      query:"mutation{\ncreateTeam(team:{\nname: \""+this.state.name+"\"\nsport:\""+this.state.name+"\"\ncaptain: \""+this.state.captain+"\"\n}){\nname\n}\n}",variables:null
+      query:"mutation{\ncreateTeam(team:{\nname: \""+this.state.name+"\"\nsport:\""+this.state.sport+"\"\ncaptain: \""+this.state.captain+"\"\n}){\nname\n}\n}",variables:null
     })
       .then(response => {
         console.log(response)
