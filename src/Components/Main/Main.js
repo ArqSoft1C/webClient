@@ -17,7 +17,7 @@ const Main = () => (
     <Route exact path='/partidos' component={Matches}/>
     <Route exact path='/canchas' component={Courts}/>
     <Route exact path='/mensajes' render={()=>(
-     !!sessionStorage.jwt ? (<Redirect to='/messages' />) : (<MessagesNL />))}/>
+     !!sessionStorage.jwt ? (<Redirect to='/messages' />) : (<Messages />))}/>
     
     <Route exact path='/perfil' component={Profile}/>
   </Switch>
