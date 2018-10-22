@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import {Row, Col, Button, Card, CardTitle} from 'react-materialize'
 
-export default class Messages extends Component {
+export default class MessagesNL extends Component {
  render() {
     return (
     <div>
@@ -15,12 +15,6 @@ export default class Messages extends Component {
   				Regístrate como jugador para poder comunicarte con otros usuarios, comparte tu disponibilidad de tiempo para jugar y tus estadísticas.<br/>
 				
             </Card>
-          
-            <Card className=''>
-               <Button floating icon='add' className='red' href="/canchas"/> Nuevo mensaje     
-            </Card>
-          
-          
           </Col>
         </Row>
         <div style={{'margin-bottom':'200px'}}>
