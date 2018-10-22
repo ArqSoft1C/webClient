@@ -1,9 +1,20 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import {Row, Col, Button, Card, CardTitle, Modal, Input} from 'react-materialize';
+import {Row, Col, Button, Card, CardTitle, Modal, Input, Collection, CollectionItem} from 'react-materialize';
 import * as consts from '../../consts';
 
+const ListItem = ({ value, onClick }) => (
+  <CollectionItem onClick={onClick}>{value}</CollectionItem>
+);
+
+const List = ({ items, onItemClick }) => (
+  <Collection>
+    {
+      items.map((item, i) => <ListItem key={i} value={item} onClick={onItemClick} />)
+    }
+  </Collection>
+);
 
 export default class Create extends Component {
   constructor(props,context) {
@@ -12,13 +23,15 @@ export default class Create extends Component {
       name: "",
       sport: "",
       captain: "",
+      inputValue: '',
+      squad: []
     };
+ 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   
   handleChange = event => {
-    console.log(event.target)
     this.setState({
       [event.target.id]: event.target.value
     });
@@ -26,7 +39,7 @@ export default class Create extends Component {
   
   postTeam() {
     axios.post(consts.GRAPHQL_URL, {
-      query:"mutation{\ncreateTeam(team:{\nname: \""+this.state.name+"\"\nsport:\""+this.state.sport+"\"\ncaptain: \""+this.state.captain+"\"\n}){\nname\n}\n}",variables:null
+      query:"mutation{\ncreateTeam(team:{\nname: \""+this.state.name+"\"\nsport:\""+this.state.sport+"\"\ncaptain: \""+this.state.captain+"\"\nsquad:[\""+this.state.squad.join(" \",\" ")+"\"]\n}){\nname\n}\n}",variables:null
     })
       .then(response => {
         console.log(response)
@@ -41,11 +54,26 @@ export default class Create extends Component {
     event.preventDefault();
     //this.props.actions.loginUser(this.state);
     this.postTeam();
-    console.log(this.state);
+    //console.log(this.state);
+    //console.log("mutation{\ncreateTeam(team:{\nname: \""+this.state.name+"\"\nsport:\""+this.state.sport+"\"\ncaptain: \""+this.state.captain+"\"\nsquad:[\""+this.state.squad.join(" \",\" ")+"\"]\n}){\nname\n}\n}");
     //window.location.reload();
   }
   
+  onClickList = () => {
+    const { inputValue, squad } = this.state;
+    if (inputValue) {
+      const nextState = [...squad, inputValue];
+      this.setState({ squad: nextState, inputValue: '' });
+    }
+  }
+
+  onChangeList = (e) => this.setState({ inputValue: e.target.value });
+
+  handleItemClick = (e) => {console.log(e.target.innerHTML)}
+  
   render() {
+    const squad = this.state.squad;
+    const inputValue = this.state.inputValue;
     return (
       <Modal
         header='Crear Equipo'
@@ -62,7 +90,16 @@ export default class Create extends Component {
             <option value='micro'>Micro</option>
             <option value='fut-8'>Fut-8</option>
           </Input>
-      </Row>
+          <Row>
+            <Input label="Squad" placeholder="add teammate" s={10} type="text" value={inputValue} onChange={this.onChangeList} />
+            <Button s={2} onClick={this.onClickList} className='red' icon='add'></Button>
+          </Row>
+          <Row>
+            <Col s={10}>
+              <List items={squad} onItemClick={this.handleItemClick} />
+            </Col>
+          </Row>
+        </Row>
       </Modal>
     );
  }
