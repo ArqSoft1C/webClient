@@ -23,6 +23,13 @@ export default class Teams extends Component {
         console.log(error)
       });
   }
+
+  TeamCreate(props){
+    if(props.user == null)
+      return null
+    else
+      return <Create />
+  }
  
  render() {
     return (
@@ -45,7 +52,7 @@ export default class Teams extends Component {
               </div>
              )}
             </Row>
-            <Create />
+                <this.TeamCreate user={sessionStorage.user}/>
           </Card>
         </Col>
       </Row>

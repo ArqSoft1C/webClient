@@ -5,6 +5,8 @@ import * as consts from '../../consts';
 import { print } from 'graphql';
 import gql from 'graphql-tag';
 import { Link } from 'react-router-dom'
+const defTeam = require('../../Images/team.jpg')
+const capTeam = require('../../Images/team2.jpg')
 
 export default class MyTeams extends Component {
     state = {
@@ -16,6 +18,7 @@ export default class MyTeams extends Component {
             teamByPlayer(player_name:$player_name){
                 name
                 id
+                captain
           }  
         }
         `
@@ -32,6 +35,12 @@ export default class MyTeams extends Component {
         .catch(err => {throw(err);})
     }
 
+    TeamImage(props){
+        const captain = props.captain
+        const image = captain == JSON.parse(sessionStorage.user).username ? capTeam: defTeam
+        return <img src={image} className="img-responsive profile-img"/>
+    }
+
     render() {
         return (
                 <Card className=''>
@@ -40,7 +49,7 @@ export default class MyTeams extends Component {
                     { this.state.teams.map(team =>
                         <Col>
                         <Link to={`/equipo/${team.id}`}>
-                            <img src={require('../../Images/team.jpg')} className="img-responsive profile-img"/>
+                            <this.TeamImage captain={team.captain}/>
                             <h4>{team.name}</h4>
                         </Link>
                         </Col>

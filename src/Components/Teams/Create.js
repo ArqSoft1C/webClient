@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import {Row, Col, Button, Card, CardTitle, Modal, Input, Collection, CollectionItem} from 'react-materialize';
 import * as consts from '../../consts';
+import swal from 'sweetalert2';
+
 
 const ListItem = ({ value, onClick }) => (
   <CollectionItem onClick={onClick}>{value}</CollectionItem>
@@ -21,10 +23,10 @@ export default class Create extends Component {
     super(props,context);
     this.state = {
       name: "",
-      sport: "",
-      captain: "",
+      sport: "futbol",
+      captain: JSON.parse(sessionStorage.user).username,
       inputValue: '',
-      squad: []
+      squad: [JSON.parse(sessionStorage.user).username]
     };
  
     this.handleChange = this.handleChange.bind(this);
@@ -43,10 +45,24 @@ export default class Create extends Component {
     })
       .then(response => {
         console.log(response)
+        if (response.data.data == null )
+          throw("Error")
+        swal(
+          "Equipo creado correctamente",
+          "",
+    			"success"
+          ).then(value => 
+            window.location.reload())
       	//this.setState({ teams });
       })
       .catch(function (error) {
-        console.log(error)
+        swal(
+          "Error en la creacion de equipo",
+          "",
+    			"warning"
+          ).then(value => 
+            window.location.reload())
+      	//this.setState({ teams });
       });
   }
   
@@ -56,7 +72,6 @@ export default class Create extends Component {
     this.postTeam();
     //console.log(this.state);
     //console.log("mutation{\ncreateTeam(team:{\nname: \""+this.state.name+"\"\nsport:\""+this.state.sport+"\"\ncaptain: \""+this.state.captain+"\"\nsquad:[\""+this.state.squad.join(" \",\" ")+"\"]\n}){\nname\n}\n}");
-    //window.location.reload();
   }
   
   onClickList = () => {
@@ -84,7 +99,7 @@ export default class Create extends Component {
         actions={[<Button onClick={this.handleSubmit}>Crear!</Button>]}>
         <Row>
           <Input s={12} label="Nombre" id='name' onChange={this.handleChange} />
-          <Input s={12} label="capitan" id='captain' onChange={this.handleChange} />
+          <Input s={12} label="capitan" id='captain' onChange={this.handleChange} defaultValue={this.state.captain} disabled/>
           <Input s={12} type='select' id='sport' label="Deporte" defaultValue='futbol' onChange={this.handleChange}>
             <option value='futbol'>Futbol</option>
             <option value='micro'>Micro</option>
