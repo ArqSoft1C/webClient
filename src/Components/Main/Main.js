@@ -8,6 +8,7 @@ import Courts from '../Courts/Courts';
 import Profile from '../User/Profile'
 import Messages from '../Messages/Messages'
 import Team from '../Teams/Team';
+import Match from '../Matches/Match'
 
 const Main = () => (
   <Switch>
@@ -17,9 +18,9 @@ const Main = () => (
     <Route exact path='/equipos' component={Teams}/>
     <Route exact path='/equipo/:id' component={Team}/>
     <Route exact path='/partidos' component={Matches}/>
+    <Route exact path='/partido/:id' component={Match}/>
     <Route exact path='/canchas' component={Courts}/>
-    <Route exact path='/mensajes' component={Messages}/>
-    
+    <Route exact path='/mensajes' component={Messages}/>    
     <Route exact path='/perfil' component={Profile}/>
   </Switch>
 )

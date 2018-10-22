@@ -64,7 +64,8 @@ export default class Matches extends Component {
         return(
           <div key={match.id}>
             <Col m={4} s={12}>
-              <Card className='' textClassName='' title={title} >
+              <Card className='' textClassName='' title={title} 
+              actions={[<Link to={`/partido/${match.id}`}>mas..</Link>]}>
                 <h6>Se jugara el: {date.toLocaleDateString()}</h6>
               </Card>
             </Col>
@@ -83,7 +84,8 @@ export default class Matches extends Component {
         return(
           <div key={match.id}>
             <Col m={4} s={12}>
-              <Card className='' textClassName='' title={teams[match.team_home_id] + " Vs. " + teams[match.team_away_id]} >
+              <Card className='' textClassName='' title={teams[match.team_home_id] + " Vs. " + teams[match.team_away_id]}
+              actions={[<Link to={`/partido/${match.id}`}>mas..</Link>]} >
                 <h6>Fue jugado el: {date.toLocaleDateString()}</h6>
               </Card>
             </Col>

@@ -27,30 +27,26 @@ class NavBar extends Component {
     if(logged.logged){
       return (
         <div >
-          <Button waves='light'><Link to='/perfil'>Perfil</Link></Button>
-          <Button waves='light' onClick={this.logout} >Cerrar Sesión</Button>
+          <Button waves='light' className='green darken-4'><Link to='/perfil'>Perfil</Link></Button>
+          <Button waves='light' onClick={this.logout} className='green darken-4' >Cerrar Sesión</Button>
         </div>
       )
     }
     else{
       return( 
         <div>
-          <Button waves='light'><Link to='/login'>Ingresar</Link></Button>
+          <Button waves='light' className='green darken-4'><Link to='/login'>Ingresar</Link></Button>
         </div>
       )
     }
   }
   render () {
     return(
-      <Navbar brand={logo} right> 
+      <Navbar brand={logo} right className='green darken-3'> 
         <NavItem ><Link to='/equipos'>Equipos</Link></NavItem>
         <NavItem ><Link to='/partidos'>Partidos</Link></NavItem>
         <NavItem ><Link to='/canchas'>Canchas</Link></NavItem>
         <NavItem ><Link to='/Mensajes'>Mensajes</Link></NavItem>
-        <NavItem href=''><Icon>search</Icon></NavItem>
-        <NavItem href=''><Icon>view_module</Icon></NavItem>
-        <NavItem href=''><Icon>refresh</Icon></NavItem>
-        <NavItem href=''><Icon>more_vert</Icon></NavItem>
         <NavItem href=''><this.userBar logged={this.props.logged_in}/></NavItem>
       </Navbar>
     )
