@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import {Row, Col, Button, Card, CardTitle} from 'react-materialize'
-import { Switch, Route } from 'react-router-dom'
 import axios from 'axios';
 import MessageS from './MessageS';
 import * as consts from '../../consts';
@@ -13,14 +12,15 @@ export default class Messages extends Component {
   }
   componentDidMount() {
     console.log("llega")
-
     axios.post(consts.GRAPHQL_URL, {
-        query:"messageByReceptor (username:"+"david"+") {\n allMessages {\n user1\n subject\n content\n}\n}",variables:null
+    //axios.get(`http://192.168.99.102:4003/message`)
+    //,{
+      "query":"query{\n  allMessages{\n    user1\n    subject    \n content \n  }\n}","variables":null
     })
  
     .then(res => {
-        const eventos = res.data;
-        const b = eventos[0].user1;
+        const eventos = res.data.data.allMessages;
+        const b = eventos[0].user1
         this.setState({ eventos });
         //a=JSON.stringify(b)
         console.log(eventos)
@@ -39,20 +39,24 @@ export default class Messages extends Component {
             <br></br>
               <Card className='' textClassName=''>
                 <h4><b>Mensajes recibidos</b></h4>
+              </Card> 
+              
                 <Row>
+                <Card className='' textClassName=''> 
                   { this.state.eventos.map(evento =>
                   <div>
-                    <Col m={4} s={12}>
-                      <Card className='' textClassName=''>
+                   
+                      <Card className='' textClassName='' actions={[<Link to={`/MensajeNL`}>Ver</Link>]}>
                       <h6>Mensaje de {evento.user1}</h6>
-                      <p>{evento.content}</p>
+                      <p>{evento.subject}</p>
                       </Card>
-                    </Col>
+                    
                   </div>
                  )}
+                </Card>
                 </Row>
                 <MessageS />
-              </Card>
+              
             </Col>
           </Row>
           <div style={{'margin-bottom':'200px'}}>
