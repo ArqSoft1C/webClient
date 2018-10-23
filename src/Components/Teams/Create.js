@@ -93,7 +93,7 @@ export default class Create extends Component {
       <Modal
         header='Crear Equipo'
         fixedFooter
-        trigger={<div className='fixed-action-btn'><Button floating fab='vertical' className='red' modal='confirm'
+        trigger={<div className='fixed-action-btn'><Button floating fab='vertical' className='green' modal='confirm'
                 icon='add' large style={{bottom: '45px', right: '24px'}}>
         </Button></div>}
         actions={[<Button onClick={this.handleSubmit}>Crear!</Button>]}>

@@ -1,10 +1,14 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
-import {Row, Col, Button, Card, CardTitle} from 'react-materialize'
-import * as consts from '../../consts';
+import { Link } from 'react-router-dom'
 import { print } from 'graphql';
 import gql from 'graphql-tag';
 import axios from 'axios';
+import {Row, Col, Card, CardTitle, Collapsible, CollapsibleItem} from 'react-materialize'
+import * as consts from '../../consts';
+import Create from './Create';
+const style =  {width: '18vw', height: '15vw', position: 'relative'}
+
+
 
 export default class Matches extends Component {
 
@@ -50,6 +54,12 @@ export default class Matches extends Component {
         .catch(err => {throw(err);})
     }
 
+    MatchCreate(props){
+      if(props.user == null)
+        return null
+      else
+        return <Create />
+    }
 
     CurrentMatch(props){
       const match = props.match
@@ -65,7 +75,7 @@ export default class Matches extends Component {
           <div key={match.id}>
             <Col m={4} s={12}>
               <Card className='' textClassName='' title={title} 
-              actions={[<Link to={`/partido/${match.id}`}>mas..</Link>]}>
+              actions={[<Link to={`/partido/${match.id}`}>mas..</Link>]} style={style}>
                 <h6>Se jugara el: {date.toLocaleDateString()}</h6>
               </Card>
             </Col>
@@ -85,7 +95,7 @@ export default class Matches extends Component {
           <div key={match.id}>
             <Col m={4} s={12}>
               <Card className='' textClassName='' title={teams[match.team_home_id] + " Vs. " + teams[match.team_away_id]}
-              actions={[<Link to={`/partido/${match.id}`}>mas..</Link>]} >
+              actions={[<Link to={`/partido/${match.id}`}>mas..</Link>]} style={style} >
                 <h6>Fue jugado el: {date.toLocaleDateString()}</h6>
               </Card>
             </Col>
@@ -97,35 +107,32 @@ export default class Matches extends Component {
     }
     render() {
     return (
-        <div>
+
         <div>
         <Row>
         <Col l={2} m={1} className='grid-example'></Col>
         <Col l={8} m={10} s={12} className='grid-example'>
-          <Card className=''>
-            <h4><b>Partidos Futuros</b></h4>
+        <Card header={<CardTitle image={require('../../Images/field3.jpg')}></CardTitle>}>
+        <Collapsible>       
+            <CollapsibleItem header={<h4><b>Partidos Futuros</b></h4>}>
             <Row>
               { this.state.matches.map(match =>
                <this.CurrentMatch match={match} teams={this.state.teams} />
               )}
             </Row>
-          </Card>
-        </Col>
-      </Row>
-      <Row>
-        <Col l={2} m={1} className='grid-example'></Col>
-        <Col l={8} m={10} s={12} className='grid-example'>
-          <Card className=''>
-            <h4><b>Partidos Jugados</b></h4>
+            </CollapsibleItem>
+            <CollapsibleItem header={<h4><b>Partidos Jugados</b></h4>}>
             <Row>
               { this.state.matches.map(match =>
                <this.PastMatch match={match} teams={this.state.teams} />
               )}
             </Row>
+            </CollapsibleItem>
+          </Collapsible>
+          <this.MatchCreate user={sessionStorage.user}/>
           </Card>
-        </Col>
-      </Row>
-        </div>
+          </Col>
+        </Row>
         </div>
     )
   }

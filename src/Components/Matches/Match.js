@@ -5,6 +5,9 @@ import * as consts from '../../consts';
 import { print } from 'graphql';
 import gql from 'graphql-tag';
 import axios from 'axios';
+import Join from './Join'
+const smallStyle =  {height: '7vw', position: 'relative'}
+
 
 export default class Match extends Component {
 
@@ -19,6 +22,7 @@ export default class Match extends Component {
         const MATCH = gql`
         query oneMatch($id: Int!){
             matchById(id: $id){
+              id
               court_id
               date
               team_home_id
@@ -81,20 +85,20 @@ export default class Match extends Component {
           id
           name
         }
-      }
-    `
-   return axios
-          .post(consts.GRAPHQL_URL, {
-              query: print(TEAM),
-              variables: {
-                  "id": team_id
-              },
-          })
-          .then(res => {
-             return res.data.data.teamById
-          })
-          .catch(err => {return err;})
-    }
+       }
+      `
+      return axios
+              .post(consts.GRAPHQL_URL, {
+                  query: print(TEAM),
+                  variables: {
+                      "id": team_id
+                  },
+              })
+              .then(res => {
+                return res.data.data.teamById
+              })
+              .catch(err => {return err;})
+        }
 
     AwayTeamPresent(props){
       const team_name = props.team_name
@@ -105,6 +109,40 @@ export default class Match extends Component {
       }
     }
 
+    Played(props){
+      const date = new Date(props.match.date)
+      if(props.match.played)
+        return (
+          <Row>
+              <Col l={12}><Card title="Partido jugado" >
+              Fue jugado el: {date.toLocaleDateString()}
+              </Card></Col>
+          </Row>
+        )
+      else
+          return (
+            <Row>
+              <Col l={12}><Card title="Partido aún no jugado" >
+              Se jugará el: {date.toLocaleDateString()}
+              </Card></Col>
+          </Row>
+          )
+    }
+
+    Score(props){
+      if(props.played)
+        return <p>Marcador final: {props.score}</p>
+      else 
+        return null
+    }
+
+    MatchJoin(props){
+      if(props.user == null || props.match.team_away_id != null)
+        return null
+      else
+        return <Join match={props.match} />
+    }
+
 
     render() {
     return (
@@ -113,21 +151,30 @@ export default class Match extends Component {
         <Row>
         <Col l={3} m={1} className='grid-example'></Col>
         <Col l={6} m={10} s={12} className='grid-example'>
-          <Card className=''>
+          <Card className='' header={<CardTitle image={require('../../Images/field2.jpg')}></CardTitle>}>
+            <this.Played match={this.state.match} />
             <Row>
               <Col l={5}>
-                <Card title="Equipo Local">
+                <Card title="Equipo Local" style={smallStyle}>
                 Nombre: {this.state.team_home.name}
+                <this.Score played={this.state.match.played} score={this.state.match.score_home}/>
                 </Card>
               </Col>
               <Col l={5} offset="l2">
-                <Card title="Equipo Visitante">
+                <Card title="Equipo Visitante" style={smallStyle}>
                   <this.AwayTeamPresent team_name={this.state.team_away.name} />
+                  <this.Score played={this.state.match.played} score={this.state.match.score_away}/>
                 </Card>
               </Col>
             </Row>
+            <Row>
+              <Col l={12}><Card title={"Cancha: " + this.state.court.name}>
+                Dirección: {this.state.court.address}
+                </Card></Col>
+            </Row>
           </Card>
         </Col>
+        <this.MatchJoin user={sessionStorage.user} match={this.state.match}/>
       </Row>
     </div>
     </div>
