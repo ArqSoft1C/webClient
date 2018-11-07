@@ -7,10 +7,7 @@ import Matches from '../Matches/Matches';
 import Courts from '../Courts/Courts';
 import Profile from '../User/Profile'
 import Messages from '../Messages/Messages'
-import MessagesNL from '../Messages/MessageNL'
-import Team from '../Teams/Team';
-import Match from '../Matches/Match'
-
+import MessagesNL from '../Messages/MessagesNL'
 const Main = () => (
   <Switch>
     <Route exact path='/' render={()=>( (<Home />) )}/>
@@ -21,8 +18,9 @@ const Main = () => (
     <Route exact path='/partidos' component={Matches}/>
     <Route exact path='/partido/:id' component={Match}/>
     <Route exact path='/canchas' component={Courts}/>
-    <Route exact path='/mensajes' component={Messages}/>    
-    <Route exact path='/mensajeNL' component={MessagesNL}/> 
+    <Route exact path='/mensajes' render={()=>(
+     !!sessionStorage.jwt ? (<Redirect to='/messages' />) : (<Messages />))}/>
+    
     <Route exact path='/perfil' component={Profile}/>
     <Route exact path='/mensajeNL' component={MessagesNL}/> 
     

@@ -35,7 +35,7 @@ class NavBar extends Component {
     else{
       return( 
         <div>
-          <Button waves='light' className='green darken-4'><Link to='/login'>Ingresar</Link></Button>
+          <Button waves='light'><Link to='/login'>Ingresar</Link></Button> 
         </div>
       )
     }
