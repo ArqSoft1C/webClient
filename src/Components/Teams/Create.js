@@ -23,7 +23,7 @@ export default class Create extends Component {
     super(props,context);
     this.state = {
       name: "",
-      sport: "futbol",
+      // sport: "futbol",
       captain: JSON.parse(sessionStorage.user).username,
       inputValue: '',
       squad: [JSON.parse(sessionStorage.user).username]
@@ -100,11 +100,11 @@ export default class Create extends Component {
         <Row>
           <Input s={12} label="Nombre" id='name' onChange={this.handleChange} />
           <Input s={12} label="capitan" id='captain' onChange={this.handleChange} defaultValue={this.state.captain} disabled/>
-          <Input s={12} type='select' id='sport' label="Deporte" defaultValue='futbol' onChange={this.handleChange}>
+          {/* <Input s={12} type='select' id='sport' label="Deporte" defaultValue='futbol' onChange={this.handleChange}>
             <option value='futbol'>Futbol</option>
             <option value='micro'>Micro</option>
             <option value='fut-8'>Fut-8</option>
-          </Input>
+          </Input> */}
           <Row>
             <Input label="Squad" placeholder="add teammate" s={10} type="text" value={inputValue} onChange={this.onChangeList} />
             <Button s={2} onClick={this.onClickList} className='red' icon='add'></Button>

@@ -46,7 +46,7 @@ export default class Teams extends Component {
                   <Card className='' textClassName='' title={team.name} 
                     actions={[<Link to={`/equipo/${team.id}`}>more..</Link>]}>
                     <h6>{team.capitan_un}</h6>
-                    <h6>{team.sport}</h6>
+                    {/* <h6>{team.sport}</h6> */}
                   </Card>
                 </Col>
               </div>

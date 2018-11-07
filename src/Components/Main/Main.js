@@ -3,7 +3,9 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Home from '../Layouts/Home';
 import Login from '../User/Login';
 import Teams from '../Teams/Teams';
+import Team from '../Teams/Team';
 import Matches from '../Matches/Matches';
+import Match from '../Matches/Match';
 import Courts from '../Courts/Courts';
 import Profile from '../User/Profile'
 import Messages from '../Messages/Messages'
