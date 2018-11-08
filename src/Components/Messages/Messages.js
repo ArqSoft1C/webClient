@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
-import MessageS from './MessageS';
+import MessagesS from './MessagesS';
 import {Row, Col, Button, Card, CardTitle} from 'react-materialize'
 import axios from 'axios';
 import * as consts from '../../consts';
@@ -60,7 +60,7 @@ export default class Messages extends Component {
                    
                 </Card>
                 </Row>
-                <MessageS />                             
+                <MessagesS />                             
             </Col>
           </Row>
           
