@@ -8,8 +8,10 @@ import Matches from '../Matches/Matches';
 import Match from '../Matches/Match';
 import Courts from '../Courts/Courts';
 import Profile from '../User/Profile'
+import MessagesM from '../Messages/MessageM'
 import Messages from '../Messages/Messages'
-import MessagesNL from '../Messages/MessagesNL'
+import Messages2 from '../Messages/Messages2'
+import MessagesNL from '../Messages/MessageNL'
 const Main = () => (
   <Switch>
     <Route exact path='/' render={()=>( (<Home />) )}/>
@@ -22,6 +24,10 @@ const Main = () => (
     <Route exact path='/canchas' component={Courts}/>
     <Route exact path='/mensajes' render={()=>(
       !!sessionStorage.jwt ? (<Messages/>) : (<MessagesNL />))}/>
+      <Route exact path='/mensajes2' render={()=>(
+      !!sessionStorage.jwt ? (<Messages2/>) : (<MessagesNL />))}/>
+      <Route exact path='/mensajesM' render={()=>(
+      !!sessionStorage.jwt ? (<MessagesM/>) : (<MessagesNL />))}/>
     <Route exact path='/perfil' component={Profile}/>
     <Route exact path='/mensajeNL' component={MessagesNL}/> 
     
