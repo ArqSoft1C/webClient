@@ -57,8 +57,9 @@ export default class Create extends Component {
             },
         })
         .then(res => {
+            var tmp_team_home_id = (res.data.data.teamByCaptain[0] == null) ? "" : res.data.data.teamByCaptain[0].id
             this.setState({ teams:res.data.data.teamByCaptain });
-            this.setState({team_home_id:res.data.data.teamByCaptain[0].id})
+            this.setState({team_home_id:tmp_team_home_id})   
         })
         .catch(err => {throw(err);})
   }
