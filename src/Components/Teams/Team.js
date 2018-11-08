@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import {Row, Col, Button, Card, CardTitle, Collection, CollectionItem} from 'react-materialize';
 import * as consts from '../../consts';
+import Join from './Join'
 
 
 export default class Team extends Component {
@@ -43,6 +44,15 @@ export default class Team extends Component {
     return list  
   }
 
+  TeamJoin(props){
+    var miembros = props.miembros
+    var user = props.user
+    if(user == null || miembros.length > 10 || miembros.includes(JSON.parse(user).username))
+      return null
+    else
+      return <Join team_id={props.team_id}/>
+  }
+
   
   render() {
   	return (
@@ -60,6 +70,7 @@ export default class Team extends Component {
             {console.log("memb",this.state.team.squad)}
           </Card>
         </Col>
+        <this.TeamJoin user={sessionStorage.user} miembros={this.state.members} team_id={this.props.match.params.id}/>
   	  </Row>
     )
   }

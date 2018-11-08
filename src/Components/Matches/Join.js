@@ -71,7 +71,7 @@ export default class Join extends Component {
         if (res.data.data == null )
         throw("Error")
     swal(
-        "Partido creado correctamente",
+        "Unido al partido correctamente",
         "",
             "success"
         ).then(value => 
@@ -79,7 +79,7 @@ export default class Join extends Component {
     })
     .catch(function (error) {
     swal(
-        "Error en la creacion de partido",
+        "Error en la creacion union al partido",
         "",
             "warning"
         ).then(value => 
