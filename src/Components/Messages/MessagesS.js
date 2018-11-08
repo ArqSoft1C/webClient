@@ -5,7 +5,7 @@ import {Row, Col, Button, Card, CardTitle, Modal, Input} from 'react-materialize
 import * as consts from '../../consts';
 import swal from 'sweetalert2'
 
-export default class MessageS extends Component {
+export default class MessagesS extends Component {
   constructor(props,context) {
     super(props,context);
     this.state = {
