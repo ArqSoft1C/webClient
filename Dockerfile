@@ -1,6 +1,13 @@
-FROM node:alpine as builder
-WORKDIR '/app'
+FROM node:latest
+
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
 COPY package*.json ./
 RUN npm install
+
 COPY . .
-RUN npm run build
+
+RUN npm build
+
+CMD [ "npm","start" ]
