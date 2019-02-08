@@ -3,3 +3,4 @@ export const GRAPHQL_URL = 'http://' + process.env.API_URL + ':' + process.env.A
 export const url = process.env.API_URL
 export const port = process.env.API_PORT
 export const entryPoint = process.env.API_ENTRY
+console.log("HOST: "+ GRAPHQL_URL + " url:" + url)
