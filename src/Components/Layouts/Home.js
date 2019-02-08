@@ -14,7 +14,7 @@ export default props =>
         >
           <img className="responsive-img" src={require('../../Images/fireball.png')}  width="180"/>
           <h2><b>PICADITOS</b></h2>
-	    		Regístrate como jugador para obtener la calificación de otros usuarios, comparte tu disponibilidad de tiempo para jugar y tus estadísticas.<br/>
+	    		{'lol'+process.env.API_URL} Regístrate como jugador para obtener la calificación de otros usuarios, comparte tu disponibilidad de tiempo para jugar y tus estadísticas.<br/>
 		      Crea equipos, añade miembros y busca jugadores!<br/>
 		      Consulta canchas disponibles para jugar!
         </Card>
