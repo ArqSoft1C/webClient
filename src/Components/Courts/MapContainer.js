@@ -38,6 +38,7 @@ export class MapContainer extends Component {
         userlng:-74.15
     }
       componentDidMount() {
+        console.log('url: '+consts.GRAPHQL_URL)
         const COURTS = gql`
         query GetAllCourts{
             allCourts{
